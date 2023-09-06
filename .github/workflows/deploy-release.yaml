@@ -22,5 +22,14 @@ jobs:
       - name: Replace the correct IP in pom.xml
         run: sed -i "s|localhost|10.1.10.154|g" pom.xml
   
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          server-id: joda-repo
+          server-username: ${{ secrets.USERNAME }}
+          server-password: ${{ secrets.PASSWORD }}
+
       - name: Deploy
-        run: mvn deploy --settings settings.xml
+        run: mvn --batch-mode deploy --settings settings.xml
