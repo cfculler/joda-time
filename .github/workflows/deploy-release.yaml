@@ -1,0 +1,26 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+  
+      - name: Replace credentials in settings.xml
+        run: |
+          sed -i "s|\${{ secrets.USERNAME }}|${{ secrets.USERNAME }}|g" settings.xml
+          sed -i "s|\${{ secrets.PASSWORD }}|${{ secrets.PASSWORD }}|g" settings.xml
+
+      - name: Replace the correct IP in pom.xml
+        run: sed -i "s|\10.1.10.154|localhost|g" pom.xml
+  
+      - name: Deploy
+        run: mvn deploy --settings settings.xml
