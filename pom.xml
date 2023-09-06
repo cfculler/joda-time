@@ -8,7 +8,7 @@
   <artifactId>joda-time</artifactId>
   <packaging>jar</packaging>
   <name>Joda-Time</name>
-  <version>2.12.5</version>
+  <version>2.12.6</version>
   <description>Date and time library to replace JDK date handling</description>
   <url>https://www.joda.org/joda-time/</url>
 
@@ -855,19 +855,19 @@
   <!-- ==================================================================== -->
   <distributionManagement>
     <repository>
-      <id>sonatype-joda-staging</id>
-      <name>Sonatype OSS staging repository</name>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <uniqueVersion>true</uniqueVersion>
+      <id>joda-repo</id>
+      <name>Joda-Releases</name>
+      <url>http://localhost:8081/repository/Joda-Releases/</url>
       <layout>default</layout>
     </repository>
     <snapshotRepository>
-      <uniqueVersion>false</uniqueVersion>
-      <id>sonatype-joda-snapshot</id>
-      <name>Sonatype OSS snapshot repository</name>
-      <url>https://oss.sonatype.org/content/repositories/joda-snapshots</url>
+      <uniqueVersion>true</uniqueVersion>
+      <id>joda-repo-snapshot</id>
+      <name>Joda-Snapshots</name>
+      <url>http://localhost:8081/repository/Joda-Snapshots/</url>
       <layout>default</layout>
     </snapshotRepository>
-    <downloadUrl>https://oss.sonatype.org/content/repositories/joda-releases</downloadUrl>
   </distributionManagement>
 
   <!-- ==================================================================== -->
@@ -1071,9 +1071,9 @@
     <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     <!-- Properties for maven-compiler-plugin -->
-    <maven.compiler.compilerVersion>1.5</maven.compiler.compilerVersion>
-    <maven.compiler.source>1.5</maven.compiler.source>
-    <maven.compiler.target>1.5</maven.compiler.target>
+    <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.fork>true</maven.compiler.fork>
     <maven.compiler.verbose>false</maven.compiler.verbose>
     <maven.compiler.optimize>true</maven.compiler.optimize>
