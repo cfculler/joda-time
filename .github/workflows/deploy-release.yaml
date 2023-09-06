@@ -20,7 +20,7 @@ jobs:
           sed -i "s|\${{ secrets.PASSWORD }}|${{ secrets.PASSWORD }}|g" settings.xml
 
       - name: Replace the correct IP in pom.xml
-        run: sed -i "s|10.1.10.154|localhost|g" pom.xml
+        run: sed -i "s|localhost|10.1.10.154|g" pom.xml
   
       - name: Deploy
         run: mvn deploy --settings settings.xml
