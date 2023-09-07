@@ -32,3 +32,12 @@ jobs:
         coordinates: groupId=joda-time artifactId=joda-time version=${{ vars.VERSION }}
         assets: extension=jar
         filename: ./target/joda-time-${{ vars.VERSION }}.jar
+    - name: Trigger Spring-Petclinic release build
+      uses: passeidireto/trigger-external-workflow-action@main
+      env:
+        PAYLOAD_AUTHOR: ${{ github.author }}
+        PAYLOAD_VERSION: ${{ vars.VERSION }}
+      with:
+        repository: cfculler/spring-petclinic
+        event: doc_update
+        github_pat: ${{ secrets.ACCESS_TOKEN }}
