@@ -22,75 +22,11 @@ jobs:
     - name: Nexus Repo Publish
       uses: sonatype-nexus-community/nexus-repo-github-action@master
       with:
-        serverUrl: https://46f4-2603-3006-9-1200-7d54-efbe-55e7-853b.ngrok-free.app
+        serverUrl: ${{ vars.LINK }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         format: maven2
         repository: Joda-Releases
-        coordinates: groupId=joda-time artifactId=joda-time version=2.12.7
+        coordinates: groupId=joda-time artifactId=joda-time version=${{ vars.VERSION }}
         assets: extension=jar
-        filename: ./target/joda-time-2.12.7.jar
-
-# name: Publish package to the Maven Central Repository
-# on:
-#   release:
-#     types: [created]
-#   workflow_dispatch:
-# jobs:
-#   publish:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Replace the correct IP in pom.xml
-#         run: sed -i "s|localhost|10.1.10.154|g" pom.xml
-#       - name: Set up Maven Central Repository
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: '8'
-#           distribution: 'temurin'
-#           server-id: ossrh
-#           server-username: MAVEN_USERNAME
-#           server-password: MAVEN_PASSWORD
-#       - name: Publish package
-#         run: mvn --batch-mode deploy
-#         env:
-#           MAVEN_USERNAME: ${{ secrets.USERNAME }}
-#           MAVEN_PASSWORD: ${{ secrets.PASSWORD }}
-
-
-
-# name: Build and Deploy
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   workflow_dispatch:
-
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-  
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-  
-#       - name: Replace credentials in settings.xml
-#         run: |
-#           sed -i "s|\${{ secrets.USERNAME }}|${{ secrets.USERNAME }}|g" settings.xml
-#           sed -i "s|\${{ secrets.PASSWORD }}|${{ secrets.PASSWORD }}|g" settings.xml
-
-#       - name: Replace the correct IP in pom.xml
-#         run: sed -i "s|localhost|10.1.10.154|g" pom.xml
-  
-#       - name: Set up Maven Central Repository
-#         uses: actions/setup-java@v3
-#         with:
-#           java-version: '8'
-#           distribution: 'temurin'
-#           server-id: joda-repo
-#           server-username: ${{ secrets.USERNAME }}
-#           server-password: ${{ secrets.PASSWORD }}
-
-#       - name: Deploy
-#         run: mvn --batch-mode deploy --settings settings.xml
+        filename: ./target/joda-time-${{ vars.VERSION }}.jar
