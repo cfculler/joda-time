@@ -18,7 +18,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Inject version number into pom.xml
-      run: sed -i "s|INJECTED-VERSION|${{ vars.VERSION }}| awk '{print $1}')|g" pom.xml
+      run: sed -i "s|INJECTED-VERSION|${{ vars.VERSION }}|g" pom.xml
     - name: Build with Maven
       run: mvn package --file pom.xml
     - name: Nexus Repo Publish
